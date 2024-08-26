@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 namespace Math_Quiz
 {
     class Program
+
     {
         static void Main(string[] args)
         {
@@ -61,7 +62,6 @@ namespace Math_Quiz
                 case 'D':
                     {
                         Division();
-                        Multiplication();
                         Console.WriteLine("Press any key to go back to the menu");
                         Console.ReadKey(true);
                         Console.Clear();
@@ -82,7 +82,7 @@ namespace Math_Quiz
 
             Console.ReadKey();
         }//main
-        //Addition method
+        //Addition
         static void Addition()
         {
             int[] firstNumber = { 3, 76, 43, 97, 46, 96, 58, 32, 64, 76 };
@@ -122,7 +122,7 @@ namespace Math_Quiz
              }
             Console.WriteLine($"You got {(score/50.00)*100}%");
         }
-        //Subtraction method
+        //Subtraction
         static void Subtraction()
         {
             int[] firstsubNumber = { 13, 76, 143, 907, 46, 96, 88, 81, 64, 76 };
@@ -163,11 +163,11 @@ namespace Math_Quiz
             Console.WriteLine($"You got {(score / 50.00) * 100}%");
 
         }
-
+        //Multiplication
         static void Multiplication()
         {
-            int[] firstmultiNumber = { 13, 76, 143, 907, 46, 96, 88, 81, 64, 76 };
-            int[] secondmultiNumber = { 2, 23, 45, 76, 12, 24, 90, 87, 84, 12 };
+            int[] firstmultiNumber = { 13, 76, 3, 7, 46, 9, 88, 3, 4, 6 };
+            int[] secondmultiNumber = { 2, 3, 45, 76, 12, 24, 9, 87, 84, 12 };
 
             int[] usedIndices = new int[6];
 
@@ -203,12 +203,47 @@ namespace Math_Quiz
             }
             Console.WriteLine($"You got {(score / 50.00) * 100}%");
         }
-
+        //Division
         static void Division()
         {
-            string[] divQuestions = { "12 / 6", "42 / 7", "72 / 8", "144 / 12", "51 / 17", "168 / 56" };
-        }
+            int[] inumerator = { 14, 92, 90, 152, 96, 120, 180, 49, 64, 60 };
+            int[] idenomenator = { 2, 23, 45, 76, 12, 24, 90, 7, 4, 12 };
 
+            int[] usedIndices = new int[6];
+
+            Random random = new Random();
+            int score = 0;
+
+            for (int k = 1; k < usedIndices.Length; k++)
+            {
+
+                int randomIntInRange;
+
+                do
+                {
+                    randomIntInRange = random.Next(inumerator.Length - 1);
+                }
+                while (usedIndices.Contains(randomIntInRange));
+
+                usedIndices[k] = randomIntInRange;
+
+                Console.Write($"{k}. " + inumerator[randomIntInRange] + " / " + idenomenator[randomIntInRange] + " = ");
+
+                int iAnswer = int.Parse(Console.ReadLine());
+
+                if (iAnswer == inumerator[randomIntInRange] / idenomenator[randomIntInRange])
+                {
+                    Console.WriteLine("Correct! ");
+                    score += 10;
+                }
+                else
+                {
+                    Console.WriteLine("Incorrect !");
+                }
+            }
+            Console.WriteLine($"You got {(score / 50.00) * 100}%");
+        }
+ 
         static void View()
         {
 
