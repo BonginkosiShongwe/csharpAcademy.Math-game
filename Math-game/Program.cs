@@ -34,6 +34,11 @@ namespace Math_Quiz
                 case 'A':
                     {
                         Addition();
+                        Console.WriteLine("Press any key to go back to the menu");
+                        Console.ReadKey(true);
+                        Console.Clear();
+                        Main(args);
+                        
                     }
                     break;
                 case 'S':
@@ -63,24 +68,35 @@ namespace Math_Quiz
 
             Console.ReadKey();
         }//main
+        //Addition method
         static void Addition()
         {
             int[] firstNumber = { 3, 76, 43, 97, 46, 96, 58, 32, 64, 76 };
             int[] secondNumber = { 2, 23, 45, 76, 12, 24, 90, 87, 84, 12 };
 
+            int[] usedIndices = new int[6];
+
             Random random = new Random();
             int score = 0;
-            //int iDummy;
 
-            for (int k = 1; k <= firstNumber.Length; k++)
+            for (int k = 1; k < usedIndices.Length; k++)
             {
-                int randomIntInRange = random.Next(addQuestions.Length);
 
-                Console.Write($@"{k}. {addQuestions[randomIntInRange]} = ");
-                //int.TryParse(addQuestions[randomIntInRange], out iDummy);
+                int randomIntInRange;
+
+                do
+                {
+                    randomIntInRange = random.Next(firstNumber.Length - 1);
+                }
+                while (usedIndices.Contains(randomIntInRange));
+
+                usedIndices[k] = randomIntInRange;
+
+                Console.Write($"{k}. " + firstNumber[randomIntInRange] + " + " + secondNumber[randomIntInRange] + " = ");
+
                 int iAnswer = int.Parse(Console.ReadLine());
 
-                if(iAnswer == addQuestions[randomIntInRange])
+                if(iAnswer == firstNumber[randomIntInRange] + secondNumber[randomIntInRange])
                 {
                     Console.WriteLine("Correct! ");
                     score += 10;
