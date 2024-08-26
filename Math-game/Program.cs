@@ -10,7 +10,7 @@ namespace Math_Quiz
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("\t\t\tWELCOME TO THE MATH GAME");
+            Console.WriteLine("WELCOME TO THE MATH GAME");
             Console.WriteLine();
             Console.WriteLine("What game would you like to play? Choose from the options below: ");
             Console.WriteLine();
@@ -20,7 +20,7 @@ namespace Math_Quiz
             Console.WriteLine("M - Multiplication");
             Console.WriteLine("D - Division");
             Console.WriteLine("Q - Quit the program");
-            Console.WriteLine("-------------------------------------------");
+            Console.WriteLine("----------------------------------------------------------------");
 
             char cOption = char.Parse(Console.ReadLine());
 
@@ -33,7 +33,7 @@ namespace Math_Quiz
                     break;
                 case 'A':
                     {
-                        //Addition
+                        Addition();
                     }
                     break;
                 case 'S':
@@ -65,40 +65,47 @@ namespace Math_Quiz
         }//main
         static void Addition()
         {
-            int[] addQuestions = { (2 + 6), (3 + 7), (7 + 8), (11 + 12), (46 + 17), (67 + 56) };
+            int[] firstNumber = { 3, 76, 43, 97, 46, 96, 58, 32, 64, 76 };
+            int[] secondNumber = { 2, 23, 45, 76, 12, 24, 90, 87, 84, 12 };
 
             Random random = new Random();
+            int score = 0;
+            //int iDummy;
 
-            for (int k = 1; k <= addQuestions.Length; k++)
+            for (int k = 1; k <= firstNumber.Length; k++)
             {
                 int randomIntInRange = random.Next(addQuestions.Length);
 
-                Console.Write($"{k}. {addQuestions[randomIntInRange]} = ");
+                Console.Write($@"{k}. {addQuestions[randomIntInRange]} = ");
+                //int.TryParse(addQuestions[randomIntInRange], out iDummy);
                 int iAnswer = int.Parse(Console.ReadLine());
 
-                if (iAnswer == addQuestions[randomIntInRange])
+                if(iAnswer == addQuestions[randomIntInRange])
                 {
-
+                    Console.WriteLine("Correct! ");
+                    score += 10;
                 }
-            }
-
-
-
+                else
+                {
+                    Console.WriteLine("Incorrect !");
+                }
+             }
+            Console.WriteLine($"You got {(score/50.00)*100}%");
         }
 
         static void Subtraction()
         {
-            int[] subQuestions = { (21 - 6), (32 - 7), (72 - 8), (101 - 12), (46 - 17), (67 - 56) };
+            string[] subQuestions = { "21 - 6", "32 - 7", "7 - 8", "101 - 12", "46 - 17", "67 - 56" };
         }
 
         static void Multiplication()
         {
-            int[] multiQuestions = { (2 * 6), (3 * 7), (7 * 8), (11 * 12), (46 * 17), (67 * 56) };
+            string[] multiQuestions = { "2 * 6", "3 * 7", "7 * 8", "11 * 12", "46 * 17", "67 * 56" };
         }
 
         static void Division()
         {
-            int[] divQuestions = { (12 / 6), (42 / 7), (72 / 8), (144 / 12), (34 / 17), (168 / 56) };
+            string[] divQuestions = { "12 / 6", "42 / 7", "72 / 8", "144 / 12", "51 / 17", "168 / 56" };
         }
 
         static void View()
