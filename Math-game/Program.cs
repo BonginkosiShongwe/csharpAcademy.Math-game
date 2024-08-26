@@ -37,30 +37,44 @@ namespace Math_Quiz
                         Console.WriteLine("Press any key to go back to the menu");
                         Console.ReadKey(true);
                         Console.Clear();
-                        Main(args);
-                        
+                        Main(args); 
                     }
                     break;
                 case 'S':
                     {
-
+                        Subtraction();
+                        Console.WriteLine("Press any key to go back to the menu");
+                        Console.ReadKey(true);
+                        Console.Clear();
+                        Main(args);
                     }
                     break;
                 case 'M':
                     {
-                        //subtract
+                        Multiplication();
+                        Console.WriteLine("Press any key to go back to the menu");
+                        Console.ReadKey(true);
+                        Console.Clear();
+                        Main(args);
                     }
                     break;
                 case 'D':
                     {
-                        //Division
+                        Division();
+                        Multiplication();
+                        Console.WriteLine("Press any key to go back to the menu");
+                        Console.ReadKey(true);
+                        Console.Clear();
+                        Main(args);
                     }
                     break;
                 case 'Q':
                     {
-                        //quit
+                        Console.WriteLine("Thank you for playing! ");
+                        Console.WriteLine("Press any key to quit! ");
+                        break;
                     }
-                    break;
+                    //break;
                 default:
                     Console.WriteLine("Incorrect option!");
                     break;
@@ -108,15 +122,86 @@ namespace Math_Quiz
              }
             Console.WriteLine($"You got {(score/50.00)*100}%");
         }
-
+        //Subtraction method
         static void Subtraction()
         {
-            string[] subQuestions = { "21 - 6", "32 - 7", "7 - 8", "101 - 12", "46 - 17", "67 - 56" };
+            int[] firstsubNumber = { 13, 76, 143, 907, 46, 96, 88, 81, 64, 76 };
+            int[] secondsubNumber = { 2, 23, 45, 76, 12, 24, 90, 87, 84, 12 };
+
+            int[] usedIndices = new int[6];
+
+            Random random = new Random();
+            int score = 0;
+
+            for (int k = 1; k < usedIndices.Length; k++)
+            {
+
+                int randomIntInRange;
+
+                do
+                {
+                    randomIntInRange = random.Next(firstsubNumber.Length - 1);
+                }
+                while (usedIndices.Contains(randomIntInRange));
+
+                usedIndices[k] = randomIntInRange;
+
+                Console.Write($"{k}. " + firstsubNumber[randomIntInRange] + " - " + secondsubNumber[randomIntInRange] + " = ");
+
+                int iAnswer = int.Parse(Console.ReadLine());
+
+                if (iAnswer == firstsubNumber[randomIntInRange] - secondsubNumber[randomIntInRange])
+                {
+                    Console.WriteLine("Correct! ");
+                    score += 10;
+                }
+                else
+                {
+                    Console.WriteLine("Incorrect !");
+                }
+            }
+            Console.WriteLine($"You got {(score / 50.00) * 100}%");
+
         }
 
         static void Multiplication()
         {
-            string[] multiQuestions = { "2 * 6", "3 * 7", "7 * 8", "11 * 12", "46 * 17", "67 * 56" };
+            int[] firstmultiNumber = { 13, 76, 143, 907, 46, 96, 88, 81, 64, 76 };
+            int[] secondmultiNumber = { 2, 23, 45, 76, 12, 24, 90, 87, 84, 12 };
+
+            int[] usedIndices = new int[6];
+
+            Random random = new Random();
+            int score = 0;
+
+            for (int k = 1; k < usedIndices.Length; k++)
+            {
+
+                int randomIntInRange;
+
+                do
+                {
+                    randomIntInRange = random.Next(firstmultiNumber.Length - 1);
+                }
+                while (usedIndices.Contains(randomIntInRange));
+
+                usedIndices[k] = randomIntInRange;
+
+                Console.Write($"{k}. " + firstmultiNumber[randomIntInRange] + " x " + secondmultiNumber[randomIntInRange] + " = ");
+
+                int iAnswer = int.Parse(Console.ReadLine());
+
+                if (iAnswer == firstmultiNumber[randomIntInRange] * secondmultiNumber[randomIntInRange])
+                {
+                    Console.WriteLine("Correct! ");
+                    score += 10;
+                }
+                else
+                {
+                    Console.WriteLine("Incorrect !");
+                }
+            }
+            Console.WriteLine($"You got {(score / 50.00) * 100}%");
         }
 
         static void Division()
