@@ -7,8 +7,8 @@ using System.Threading.Tasks;
 namespace Math_Quiz
 {
     class Program
-
     {
+        static List<string> prevGame = new List<string>();
         static void Main(string[] args)
         {
             Console.WriteLine("WELCOME TO THE MATH GAME");
@@ -29,7 +29,9 @@ namespace Math_Quiz
             {
                 case 'V':
                     {
-                        //view previous games
+                        View();
+                        Console.Clear();
+                        Main(args);
                     }
                     break;
                 case 'A':
@@ -72,6 +74,7 @@ namespace Math_Quiz
                     {
                         Console.WriteLine("Thank you for playing! ");
                         Console.WriteLine("Press any key to quit! ");
+                        Console.ReadKey();
                         break;
                     }
                     //break;
@@ -97,6 +100,7 @@ namespace Math_Quiz
             {
 
                 int randomIntInRange;
+                string sQuestion;
 
                 do
                 {
@@ -105,8 +109,9 @@ namespace Math_Quiz
                 while (usedIndices.Contains(randomIntInRange));
 
                 usedIndices[k] = randomIntInRange;
-
-                Console.Write($"{k}. " + firstNumber[randomIntInRange] + " + " + secondNumber[randomIntInRange] + " = ");
+                sQuestion = firstNumber[randomIntInRange] + " + " + secondNumber[randomIntInRange];
+                prevGame.Add(sQuestion);
+                Console.Write($"{k}. " + sQuestion + " = ");
 
                 int iAnswer = int.Parse(Console.ReadLine());
 
@@ -127,8 +132,9 @@ namespace Math_Quiz
         {
             int[] firstsubNumber = { 13, 76, 143, 907, 46, 96, 88, 81, 64, 76 };
             int[] secondsubNumber = { 2, 23, 45, 76, 12, 24, 90, 87, 84, 12 };
-
             int[] usedIndices = new int[6];
+
+            string sQuestion;
 
             Random random = new Random();
             int score = 0;
@@ -145,8 +151,9 @@ namespace Math_Quiz
                 while (usedIndices.Contains(randomIntInRange));
 
                 usedIndices[k] = randomIntInRange;
-
-                Console.Write($"{k}. " + firstsubNumber[randomIntInRange] + " - " + secondsubNumber[randomIntInRange] + " = ");
+                sQuestion = firstsubNumber[randomIntInRange] + " - " + secondsubNumber[randomIntInRange];
+                prevGame.Append(sQuestion);
+                Console.Write($"{k}. " + sQuestion + " = ");
 
                 int iAnswer = int.Parse(Console.ReadLine());
 
@@ -168,9 +175,9 @@ namespace Math_Quiz
         {
             int[] firstmultiNumber = { 13, 76, 3, 7, 46, 9, 88, 3, 4, 6 };
             int[] secondmultiNumber = { 2, 3, 45, 76, 12, 24, 9, 87, 84, 12 };
-
             int[] usedIndices = new int[6];
 
+            string sQuestion;
             Random random = new Random();
             int score = 0;
 
@@ -186,8 +193,8 @@ namespace Math_Quiz
                 while (usedIndices.Contains(randomIntInRange));
 
                 usedIndices[k] = randomIntInRange;
-
-                Console.Write($"{k}. " + firstmultiNumber[randomIntInRange] + " x " + secondmultiNumber[randomIntInRange] + " = ");
+                sQuestion = firstmultiNumber[randomIntInRange] + " x " + secondmultiNumber[randomIntInRange];
+                Console.Write($"{k}. " + sQuestion + " = ");
 
                 int iAnswer = int.Parse(Console.ReadLine());
 
@@ -208,9 +215,9 @@ namespace Math_Quiz
         {
             int[] inumerator = { 14, 92, 90, 152, 96, 120, 180, 49, 64, 60 };
             int[] idenomenator = { 2, 23, 45, 76, 12, 24, 90, 7, 4, 12 };
-
             int[] usedIndices = new int[6];
 
+            string sQuestion;
             Random random = new Random();
             int score = 0;
 
@@ -226,8 +233,8 @@ namespace Math_Quiz
                 while (usedIndices.Contains(randomIntInRange));
 
                 usedIndices[k] = randomIntInRange;
-
-                Console.Write($"{k}. " + inumerator[randomIntInRange] + " / " + idenomenator[randomIntInRange] + " = ");
+                sQuestion = inumerator[randomIntInRange] + " / " + idenomenator[randomIntInRange];
+                Console.Write($"{k}. " + sQuestion + " = ");
 
                 int iAnswer = int.Parse(Console.ReadLine());
 
@@ -246,7 +253,21 @@ namespace Math_Quiz
  
         static void View()
         {
-
+            if(prevGame.Count == 0)
+            {
+                Console.WriteLine("No games played yet !");
+                Console.WriteLine("Press any key to return to the main menu");
+                Console.ReadKey();
+            }
+            else
+            {
+                Console.WriteLine("Previous games !");
+                foreach (string question in prevGame)
+                {
+                    Console.WriteLine(question);
+                }
+            }
+            
         }
     }
 }
