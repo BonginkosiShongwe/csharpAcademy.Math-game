@@ -30,6 +30,8 @@ namespace Math_Quiz
                 case 'V':
                     {
                         View();
+                        Console.WriteLine("Press any key to go back to the menu");
+                        Console.ReadKey(true);
                         Console.Clear();
                         Main(args);
                     }
@@ -74,7 +76,7 @@ namespace Math_Quiz
                     {
                         Console.WriteLine("Thank you for playing! ");
                         Console.WriteLine("Press any key to quit! ");
-                        Console.ReadKey();
+                        Console.ReadKey(true);
                         break;
                     }
                     //break;
@@ -256,8 +258,6 @@ namespace Math_Quiz
             if(prevGame.Count == 0)
             {
                 Console.WriteLine("No games played yet !");
-                Console.WriteLine("Press any key to return to the main menu");
-                Console.ReadKey();
             }
             else
             {
